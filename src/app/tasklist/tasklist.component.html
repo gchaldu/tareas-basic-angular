@@ -1,0 +1,38 @@
+<section>
+  <h1>Lista de Tareas</h1>
+  <form>
+    <label for="tarea">Tarea: </label>
+    <input type="text" [(ngModel)]="newTask!.tarea" placeholder="Ingrese la tarea" id="tarea" name="tarea">
+
+    <label for="id">Id:</label>
+    <input type="number" [(ngModel)]="newTask!.id" placeholder="Ingrese el id" id="id" name="id">
+
+    <button (click)="addTarea()" >Add</button>
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>Tarea</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (task of tasks; track $index) {
+        <tr>
+          <td>{{task.id}}</td>
+          <td>{{task.tarea}}</td>
+          <td><a href="#" (click)="deleteTarea($index)" >Eliminar</a></td>
+          <td><a href="#" (click)="editTarea(task.id)" >Modificar</a></td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <h2>Editar Tarea</h2>
+  <input type="text" id="tareaUpdate" [value]="taskToUpdate?.tarea">
+  <button (click)="updateTarea()" >Modificar</button>
+  <!-- <ul>
+    @for (task of tasks; track $index) {
+      <li (click)="deleteTarea($index)" class="lista">{{task.tarea}}</li>
+    }
+  </ul> -->
+</section>
